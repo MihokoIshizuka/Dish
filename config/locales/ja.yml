@@ -4,7 +4,7 @@ ja:
       default: "%Y/%m/%d %H:%M:%S"
 
   enums:
-    orders:
+    order:
       payment_method:
         credit_card: クレジットカード
         transfar: 銀行振込
@@ -14,7 +14,7 @@ ja:
         in_production: 製作中
         preparing_shipment: 発送準備中
         shipped: 発送済み
-    order_details:
+    order_detail:
       making_status:
         cannot_start: 製作不可
         waiting_start: 製作待ち

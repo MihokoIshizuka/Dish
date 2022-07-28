@@ -3,7 +3,7 @@
     <h3>商品新規登録</h3>
   </div>
   <div class="row justify-content-center">
-    <div class="col-md-10">
+    <div class="col-md-6">
       <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
         <%= render 'admin/items/item_form', f: f %>
         <div class="form-group">

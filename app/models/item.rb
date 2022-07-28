@@ -15,16 +15,14 @@ class Item < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       image.attach(io: File.open(file_path), filename: 'no_image.jpg', content_type: 'image/jpg')
     end
-    image.valiant(resize_to_fit: [width, height]).processed
+    image.variant(resize_to_fit: [width, height]).processed
   end
 
   def image_type
-    images.each do |image|
-      if !image.blob
-        errors.add(:image, 'をアップロードしてください')
-      elsif !image.blob.content_type.in?(%('image/jpeg image/png'))
-        errors.add(:images, 'はjpegまたはpng形式でアップロードしてください')
-      end
+    if !image.blob
+      errors.add(:image, 'をアップロードしてください')
+    elsif !image.blob.content_type.in?(%('image/jpeg image/png'))
+      errors.add(:images, 'はjpegまたはpng形式でアップロードしてください')
     end
   end
 

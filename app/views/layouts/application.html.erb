@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -36,7 +36,7 @@
                 <li class="nav-item">
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn" %>
                 </li>
-              <% if customer_signed_in? %>
+              <% elsif customer_signed_in? %>
                 <li class="nav-item">
                   <%= link_to "マイページ", mypage_path, class:"mr-3 btn" %>
                 </li>

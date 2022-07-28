@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :introduction, presence: true
   validates :price, presence: true, :numericality => { :greater_than_or_equal_to => 0 }, format: { with: /\A[0-9]+\z/ }
-  validates :image_type
+  validate :image_type
 
   def get_image(width, height)
     unless image.attached?
@@ -16,6 +16,16 @@ class Item < ApplicationRecord
       image.attach(io: File.open(file_path), filename: 'no_image.jpg', content_type: 'image/jpg')
     end
     image.valiant(resize_to_fit: [width, height]).processed
+  end
+
+  def image_type
+    images.each do |image|
+      if !image.blob
+        errors.add(:image, 'をアップロードしてください')
+      elsif !image.blob.content_type.in?(%('image/jpeg image/png'))
+        errors.add(:images, 'はjpegまたはpng形式でアップロードしてください')
+      end
+    end
   end
 
   # 消費税を求めるメソッド

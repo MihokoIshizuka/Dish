@@ -16,7 +16,16 @@
         <tbody>
           <% @customers.each do |customer| %>
           <tr>
-            
+            <td><%= customer.id %></td>
+            <td><%= customer.name %></td>
+            <td><%= customer.email %></td>
+            <td>
+              <% if customer.is_deleted %>
+                <span>販売中</span>
+              <% else %>
+                <span>販売停止中</span>
+              <% end %>
+            </td>
           </tr>
         </tbody>
       </table>

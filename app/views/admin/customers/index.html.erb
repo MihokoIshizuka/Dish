@@ -20,10 +20,10 @@
             <td><%= customer.name %></td>
             <td><%= customer.email %></td>
             <td>
-              <% if customer.is_deleted %>
-                <span>販売中</span>
+              <% if customer.is_deleted == false %>
+                <span>有効</span>
               <% else %>
-                <span>販売停止中</span>
+                <span>退会</span>
               <% end %>
             </td>
           </tr>

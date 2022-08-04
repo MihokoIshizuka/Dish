@@ -21,11 +21,6 @@ class Admin::CustomersController < ApplicationController
     end
   end
 
-  def orders
-    @customer = Customer.find(params[:customer_id])
-    @orders = @customer.orders.all
-  end
-
   private
 
   def customer_params

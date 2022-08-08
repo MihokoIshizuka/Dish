@@ -1,13 +1,15 @@
 class Admin::OrdersController < ApplicationController
 
   def show
-    @customer = Customer.find(params[:id])
+    @order = Order.find(params[:id])
+    @customer = @order.customer_id
+    @order_details = @order.order_details
   end
 
   def update
-    @customer = Customer.find(params[:id])
-    if @customer.update(customer_params)
-      redirect_to admin_order_path(@customer.id)
+    @order = Order.find(params[:id])
+    if @order.update(order_params)
+      redirect_to request.referer
     end
   end
 
@@ -18,7 +20,7 @@ class Admin::OrdersController < ApplicationController
 
   private
 
-  def customer_params
+  def order_params
     params.require(:order).permit(:status)
   end
 

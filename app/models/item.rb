@@ -26,7 +26,7 @@ class Item < ApplicationRecord
     end
   end
 
-  # 消費税を求めるメソッド
+  # 商品の税込み価格
   def with_tax_price
     (price * 1.1).floor
   end

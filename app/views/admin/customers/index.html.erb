@@ -15,18 +15,19 @@
         </thead>
         <tbody>
           <% @customers.each do |customer| %>
-          <tr>
-            <td><%= customer.id %></td>
-            <td><%= customer.name %></td>
-            <td><%= customer.email %></td>
-            <td>
-              <% if customer.is_deleted == false %>
-                <span>有効</span>
-              <% else %>
-                <span>退会</span>
-              <% end %>
-            </td>
-          </tr>
+            <tr>
+              <td><%= customer.id %></td>
+              <td><%= customer.name %></td>
+              <td><%= customer.email %></td>
+              <td>
+                <% if customer.is_deleted == false %>
+                  <span>有効</span>
+                <% else %>
+                  <span>退会</span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>

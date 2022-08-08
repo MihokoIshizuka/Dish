@@ -21,7 +21,7 @@ class Order < ApplicationRecord
     sum
   end
 
-  # 税抜合計金額
+  # 送料なしの税込み合計金額
   def sum_subtotal
     self.total_payment - self.shipping_cost
   end

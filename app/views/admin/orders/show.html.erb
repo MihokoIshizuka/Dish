@@ -28,9 +28,10 @@
         <tr>
           <th>注文ステータス</th>
           <td>
-            <%= foem_with model: @order, url: admin_order_path(@order) do |f| %>
-            <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}", k]} %>
-            <%= f.submit "更新", class: "btn btn-success" %>
+            <%= form_with model: @order, url: admin_order_path(@order) do |f| %>
+              <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}", k]} %>
+              <%= f.submit "更新", class: "btn btn-success" %>
+            <% end %>
           </td>
         </tr>
       </table>
@@ -55,9 +56,31 @@
               <td><%= order_detail.item.name %></td>
               <td><%= order_detail.item.with_tax_price.to_s(:delimited) %></td>
               <td><%= order_detail.amount %></td>
-              <td><%= order_detail.item.name %></td>
+              <td><%= order_detail.subtotal.to_s(:delimited) %></td>
+              <td>
+                <%= form_with model: order_detail, url: admin_order_detail_path(order_detail) do |f| %>
+                  <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}", k]} %>
+                  <%= f.submit "更新", class: "btn btn-success" %>
+                <% end %>
+              </td>
             </tr>
         </tbody>
+      </table>
+    </div>
+    <div class="col-md-3">
+      <table class="table table-borderless">
+        <tr>
+          <th>商品合計</th>
+          <td><%= @order.sum_subtotal.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <th>送料</th>
+          <td><%= @order.shipping_cost.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <th>請求金額合計</th>
+          <td><%= @order.total_payment.to_s(:delimited) %></td>
+        </tr>
       </table>
     </div>
   </div>

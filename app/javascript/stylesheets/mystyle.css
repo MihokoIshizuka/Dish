@@ -24,3 +24,11 @@
     top: 150px;
     width: 80%;
 }
+
+.about-visual {
+  background-image: url('../images/food.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 400px;
+  height: 550px;
+}

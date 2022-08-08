@@ -9,9 +9,12 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.update(order_params)
-      if @order.status == 
-      redirect_to request.referer
-    end
+      if @order.status == 1
+        @order.order_details.update_all(making_status: 1)
+        redirect_to request.referer
+      else
+        redirect_to request.referer
+      end
   end
 
   def customer_order

@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   validates :introduction, presence: true
   validates :price, presence: true, :numericality => { :greater_than_or_equal_to => 0 }, format: { with: /\A[0-9]+\z/ }
   validate :image_type
+  validates :genre_id, presence: true
 
   def get_image(width, height)
     unless image.attached?

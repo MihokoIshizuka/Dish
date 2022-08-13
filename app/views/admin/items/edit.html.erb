@@ -7,7 +7,8 @@
       <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch do |f| %>
         <%= render 'admin/items/item_form', f: f %>
         <div class="form-group">
-          <%= f.submit :"変更を保存", class: "btn btn-success" %>
+          <%= f.submit :"変更を保存", class: "btn btn-success mr-2" %>
+          <%= link_to "削除", admin_item_path(@item), method: :delete, class: "btn btn-danger" %>
         </div>
       <% end %>
     </div>

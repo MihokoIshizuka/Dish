@@ -30,11 +30,22 @@
         </tr>
         <tr>
           <th>
-            <%= @item.with_tax_price.to_s(:delimited) %>
-            (税込み)
+            <%= @item.with_tax_price.to_s(:delimited) %>(税込み)
+            <% if @item.is_active == true %>
+              <span class="text-success font-weight-bold ml-3">販売中</span>
+            <% else %>
+              <span class="text-muted font-weight-bold ml-3">販売停止中</span>
+            <% end %>
           </th>
         </tr>
       </table>
+      <div class="row justify-content-end">
+        <%= form_with model: @cart_items, url: cart_items_path, method: :post do |f| %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.select :amount, *[1..10] %>
+          <%= f.submit "カートに追加する", class: "btn btn-primary ml-5" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
